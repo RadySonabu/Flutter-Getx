@@ -1,7 +1,9 @@
-import 'package:app/views/home/homepage.dart';
-import 'package:app/views/public/create_flavor_profile.dart';
+import 'package:app/features/public/splash_screen/splash_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'core/routes/app_routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,11 +14,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      defaultTransition: Transition.noTransition,
+      title: 'Sample App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: CreateFlavorProfile(),
+          primaryColor: Colors.blue[900],
+          buttonTheme: ButtonThemeData(
+            buttonColor: Colors.blue[900], //  <-- dark color
+            textTheme: ButtonTextTheme
+                .primary, //  <-- this auto selects the right color
+          )),
+      getPages: AppPages.route,
+      initialRoute: '/login',
     );
   }
 }
